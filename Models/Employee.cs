@@ -12,6 +12,7 @@ namespace MvcPureHtml.Models
     {
         [Display(Name ="SSN")]
         [Column("ID")]
+        [Key]
         public int Emp_Id {  get; set; }
 
         [Display(Name ="First Name :")]
@@ -59,6 +60,6 @@ namespace MvcPureHtml.Models
         [ForeignKey("Department")]
         public int Dept_Id { get; set; }
 
-        public virtual Department Departments { get; set; }
+        public virtual Department Department { get; set; }
     }
 }
