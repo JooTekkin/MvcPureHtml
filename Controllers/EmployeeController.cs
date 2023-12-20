@@ -21,5 +21,26 @@ namespace MvcPureHtml.Controllers
             var emps = db.Employees.Include(dept => dept.Department).ToList();
             return View(emps);
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            ViewBag.depts = db.Departments.ToList();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Employees.Add(employee);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }else
+            {
+                return View();
+            }
+        }
     }
 }

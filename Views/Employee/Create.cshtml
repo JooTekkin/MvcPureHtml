@@ -1,0 +1,68 @@
+﻿@model Employee
+@{
+    ViewBag.Title = "Create";
+    var depts = ViewBag.depts as IEnumerable<Department>;
+}
+
+<h2>Create</h2>
+
+<form action="/Employee/Create" method="post">
+
+    <div class="form-floating mb-2 mx-lg-5">
+        <input type="text" class="form-control" id="Fname" name="Fname" maxlength="10" required>
+        <label for="Fname">First Name:</label>
+    </div>
+
+    <div class="form-floating mb-2 mx-lg-5">
+        <input type="text" class="form-control" id="Lname" name="Lname" maxlength="10" required>
+        <label for="Lname">Last Name:</label>
+    </div>
+
+    <div class="form-floating mb-2 mx-lg-5">
+        <input type="password" class="form-control" id="Pwd" name="Pwd" pattern="^[a-zA-Z0-9]{4,15}$" required>
+        <label for="Pwd">Password:</label>
+    </div>
+
+    <div class="form-floating mb-2 mx-lg-5">
+        <input type="password" class="form-control" id="CPwd" name="CPwd" pattern="^[a-zA-Z0-9]{4,15}$" required>
+        <label for="CPwd">Confirm Password:</label>
+        <div class="invalid-feedback"> dosen't match pattern</div>
+    </div>
+
+    <div class="form-floating mb-2 mx-lg-5">
+        <input type="date" class="form-control" id="Bod" name="Bod" required>
+        <label for="Bod">BirthDate:</label>
+    </div>
+
+    <div class="form-floating mb-2 mx-lg-5">
+        <input type="date" class="form-control" id="Boh" name="Boh" required>
+        <label for="Boh">BirthHire:</label>
+    </div>
+
+    <div class="form-floating mb-2 mx-lg-5">
+        <input type="url" class="form-control" id="Url" name="Url" required>
+        <label for="Url">Url Blog:</label>
+    </div>
+
+    <div class="form-floating mb-2 mx-lg-5">
+        <input type="email" class="form-control" id="Email" name="Email" required>
+        <label for="Email">Email:</label>
+    </div>
+
+    <select class="form-select form-select-lg  mb-2 mx-lg-5" name="Dept_Id" aria-label="Default select example" required>
+        <option selected>Departments</option>
+        @foreach (var item in depts)
+        {
+            <option value="@item.Dept_Id">@item.Dept_Name</option>
+        }
+    </select>
+
+    <input type="submit" class="btn btn-warning position-absolute start-50" />
+</form>
+
+<a href="/Employee/Index" class="btn btn-danger ms-5">Back</a>
+
+@section Script{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    }
