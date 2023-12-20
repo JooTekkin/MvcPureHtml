@@ -7,6 +7,8 @@
 <h2>Edit</h2>
 <form action="/Employee/Edit" method="post">
 
+    <input type="hidden" name="Emp_Id" value="@Model.Emp_Id" />
+
     <div class="form-floating mb-2 mx-lg-5">
         <input type="text" value="@Model.Fname" class="form-control" id="Fname" name="Fname" maxlength="10" required>
         <label for="Fname">First Name:</label>
