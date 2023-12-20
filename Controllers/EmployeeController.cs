@@ -75,5 +75,14 @@ namespace MvcPureHtml.Controllers
             return View(emps);
         }
 
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            var emp = db.Employees.FirstOrDefault(w => w.Emp_Id == id);
+            db.Employees.Remove(emp);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
