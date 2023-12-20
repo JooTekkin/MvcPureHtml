@@ -53,10 +53,10 @@ namespace MvcPureHtml.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "Pwd,CPwd")] Employee employee)
+        public ActionResult Edit(Employee employee)
         {
-            //ModelState.Remove("Pwd");
-            //ModelState.Remove("CPwd");
+            ModelState.Remove("Pwd");
+            ModelState.Remove("CPwd");
             if (ModelState.IsValid)
             {
                 db.Employees.AddOrUpdate(employee);
@@ -68,6 +68,12 @@ namespace MvcPureHtml.Controllers
             }
         }
 
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var emps = db.Employees.Include(w => w.Department).FirstOrDefault(w => w.Emp_Id == id);
+            return View(emps);
+        }
 
     }
 }
