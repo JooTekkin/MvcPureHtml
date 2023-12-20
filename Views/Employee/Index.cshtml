@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Employee>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Employees</h2>
+
+<a href="/Employee/Create" class="btn btn-success mb-4 mx-4">Create New</a>
+
+<div class="table-responsive">
+    <table class="table table-striped table-hover table-dark table-bordered">
+        <tr>
+            <th>SSN</th>
+            <th>First Name:</th>
+            <th>Last Name:</th>
+            <th>BirthDate:</th>
+            <th>BirthHire:</th>
+            <th>Url Blog:</th>
+            <th>Email:</th>
+            <th>Department:</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Dept_Id</td>
+                <td>@item.Fname</td>
+                <td>@item.Lname</td>
+                <td>@item.Bod</td>
+                <td>@item.Boh</td>
+                <td>@item.Url</td>
+                <td>@item.Email</td>
+                <td>@item.Department.Dept_Name</td>
+                <td>
+                    <a href="/Employee/Edit/@item.Emp_Id" class="btn btn-primary">Edit</a> |
+                    <a href="/employee/Details/@item.Emp_Id" class="btn btn-info">Details</a> |
+                    <a href="/employee/Delete/@item.Emp_Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
+
