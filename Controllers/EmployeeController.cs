@@ -1,6 +1,7 @@
 ﻿using MvcPureHtml.Models;
 using System;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -42,5 +43,31 @@ namespace MvcPureHtml.Controllers
                 return View();
             }
         }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var emp = db.Employees.FirstOrDefault(emps => emps.Emp_Id == id);
+            ViewBag.depts = db.Departments.ToList();
+            return View(emp);
+        }
+
+        [HttpPost]
+        public ActionResult Edit([Bind(Include = "Pwd,CPwd")] Employee employee)
+        {
+            //ModelState.Remove("Pwd");
+            //ModelState.Remove("CPwd");
+            if (ModelState.IsValid)
+            {
+                db.Employees.AddOrUpdate(employee);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            } else
+            {
+                return View();
+            }
+        }
+
+
     }
 }

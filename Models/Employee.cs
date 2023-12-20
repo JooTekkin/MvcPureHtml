@@ -35,7 +35,6 @@ namespace MvcPureHtml.Models
 
         [Display(Name ="Confirm Password")]
         [DataType(DataType.Password)]
-        [Required(ErrorMessage = "you should fill it")]
         [RegularExpression("^[a-zA-Z0-9]{4,15}$", ErrorMessage = "between 4,15 contain nums and chars")]
         //[Compare("Pwd",ErrorMessage ="Dosen't match")]
         [NotMapped]
